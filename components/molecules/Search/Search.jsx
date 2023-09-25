@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, TextInput, View } from 'react-native';
 import { FetchWithAsyncAwait } from '../../../features/api/fetchApi';
 
