@@ -11,7 +11,7 @@ export const SetSearch = () => {
       <TextInput
         placeholder="Enter set number"
         onChangeText={(text) => {
-          setSearchQuery(`sets/${text}`);
+          setSearchQuery(`/sets/${text}`);
           setShouldFetch(false); // Reset the fetch state when the input changes
         }}
       />

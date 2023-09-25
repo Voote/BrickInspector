@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View } from 'react-native';
 import { Logo } from './components/atoms/Logo/Logo';
-import { CustomSafeAreaView } from './features/helpers/CustomSafeAreaView/CustomSafeAreaView';
 import { WelcomeText } from './components/atoms/WelcomeText/WelcomeTexxt';
 import { SetSearch } from './components/molecules/Search/Search';
+import { CustomSafeAreaView } from './features/helpers/CustomSafeAreaView/CustomSafeAreaView';
 
 export default function App() {
   return (

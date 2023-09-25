@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
+import { config } from '../../config';
 
 export const FetchWithAsyncAwait = ({ searchQuery }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
         const response = await fetch(
-          `${process.env.REBRICKABLE_API_URL}${searchQuery}?key=${process.env.REBRICABLE_API_KEY}`,
+          `${config.apiBaseUrl}${searchQuery}?key=${config.apiBaseKey}`,
         );
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -32,8 +32,9 @@ export const FetchWithAsyncAwait = ({ searchQuery }) => {
     <View>
       {loading && <Text>Loading...</Text>}
       {error && <Text>Error: {error.message}</Text>}
-      {data && <Text>Data fetched</Text>}
-      {/* {data && <Text>{JSON.stringify(data)}</Text>} */}
+      {/* {data && <Text>Data fetched</Text>} */}
+      {/* {data && <Text>{config.apiBaseUrl}</Text>} */}
+      {data && <Text>{data.name}</Text>}
     </View>
   );
 };
