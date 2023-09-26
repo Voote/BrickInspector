@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import { Button, Image, Text, View } from 'react-native';
 import { config } from '../../config';
 
 export const FetchWithAsyncAwait = ({ searchQuery }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showData, setShowData] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
         const response = await fetch(
-          `${config.apiBaseUrl}${searchQuery}?key=${config.apiBaseKey}`,
+          `${config.apiBaseUrl}${searchQuery}-1?key=${config.apiBaseKey}`,
         );
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -32,7 +34,20 @@ export const FetchWithAsyncAwait = ({ searchQuery }) => {
     <View>
       {loading && <Text>Loading...</Text>}
       {error && <Text>Error: {error.message}</Text>}
-      {data && <Text>{data.name}</Text>}
+      {data && (
+        <>
+          <Text>{data.name}</Text>
+          <Button title="Show Data" onPress={() => setShowData(!showData)} />
+          {showData && (
+            <View className="p-8">
+              <Image
+                className="w-auto h-24"
+                source={{ uri: data.set_img_url }}
+              />
+            </View>
+          )}
+        </>
+      )}
     </View>
   );
 };

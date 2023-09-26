@@ -10,9 +10,9 @@ export default function App() {
     <CustomSafeAreaView>
       <Logo />
       <WelcomeText />
-      <View className="flex-1 justify-center ">
+      <View className="flex-1 justify-center w-full">
         <SetSearch />
-        <Text className="text-white">Hello world, good to see you</Text>
+        {/* <Text className="text-white">Hello world, good to see you</Text> */}
         <StatusBar style="" />
       </View>
     </CustomSafeAreaView>
