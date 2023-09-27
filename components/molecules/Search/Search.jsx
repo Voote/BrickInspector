@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { TouchableOpacity, Text, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 import { FetchWithAsyncAwait } from '../../../features/api/fetchApi';
+import { PrimaryButton } from '../../atoms/Button/PrimaryButton';
 
 export const SetSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,14 +17,7 @@ export const SetSearch = () => {
           setShouldFetch(false); // Reset the fetch state when the input changes
         }}
       />
-      <View className="px-24">
-        <TouchableOpacity
-          className="bg-[#0055BF] py-2"
-          onPress={() => setShouldFetch(true)}
-        >
-          <Text className="text-center text-white font-bold">Search</Text>
-        </TouchableOpacity>
-      </View>
+      <PrimaryButton action={() => setShouldFetch(true)} label={'Search'} />
       {shouldFetch && <FetchWithAsyncAwait searchQuery={searchQuery} />}
     </View>
   );

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Button, Image, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { SetInfo } from '../../components/molecules/SetInfo/SetInfo';
 import { config } from '../../config';
 
 export const FetchWithAsyncAwait = ({ searchQuery }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [showData, setShowData] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +14,7 @@ export const FetchWithAsyncAwait = ({ searchQuery }) => {
       setError(null);
       try {
         const response = await fetch(
-          `${config.apiBaseUrl}${searchQuery}?key=${config.apiBaseKey}`,
+          `${config.apiBaseUrl}${searchQuery}-1?key=${config.apiBaseKey}`,
         );
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -39,18 +39,11 @@ export const FetchWithAsyncAwait = ({ searchQuery }) => {
         </Text>
       )}
       {data && (
-        <View className="">
-          <Text>{data.name}</Text>
-          <Button title="Show Data" onPress={() => setShowData(!showData)} />
-          {showData && (
-            <View className="p-8">
-              <Image
-                className="w-fit min-h-[50vw]"
-                source={{ uri: data.set_img_url }}
-              />
-            </View>
-          )}
-        </View>
+        <SetInfo
+          dataName={data.name}
+          dataImg={data.set_img_url}
+          data={data}
+        />
       )}
     </View>
   );
