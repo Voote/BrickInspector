@@ -14,7 +14,7 @@ export const FetchWithAsyncAwait = ({ searchQuery }) => {
       setError(null);
       try {
         const response = await fetch(
-          `${config.apiBaseUrl}${searchQuery}-1?key=${config.apiBaseKey}`,
+          `${config.apiBaseUrl}${searchQuery}?key=${config.apiBaseKey}`,
         );
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -32,21 +32,25 @@ export const FetchWithAsyncAwait = ({ searchQuery }) => {
 
   return (
     <View>
-      {loading && <Text>Loading...</Text>}
-      {error && <Text>Error: {error.message}</Text>}
+      {loading && <Text className="bg-green-500 mx-12">Loading...</Text>}
+      {error && (
+        <Text className="text-center text-red-500 p-2 font-bold">
+          Error: {error.message}
+        </Text>
+      )}
       {data && (
-        <>
+        <View className="">
           <Text>{data.name}</Text>
           <Button title="Show Data" onPress={() => setShowData(!showData)} />
           {showData && (
             <View className="p-8">
               <Image
-                className="w-auto h-24"
+                className="w-fit min-h-[50vw]"
                 source={{ uri: data.set_img_url }}
               />
             </View>
           )}
-        </>
+        </View>
       )}
     </View>
   );
