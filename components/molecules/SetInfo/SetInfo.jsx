@@ -1,23 +1,32 @@
 import { Image, Text, View } from 'react-native';
 import { PrimaryButton } from '../../atoms/Button/PrimaryButton';
+import { FetchWithVariant } from '../../../features/api/fetchApi';
+import { useState } from 'react';
 
-const fetchMoreDetails = (checkSetData) => {
-  console.log(checkSetData);
-};
+export const SetInfo = ({ dataName, dataImg, setNumber }) => {
+  const [shouldFetch, setShouldFetch] = useState(false);
 
-export const SetInfo = ({ dataName, dataImg, data }) => (
-  <View>
-    <Text className="text-center pt-4 text-lg font-bold">{dataName}</Text>
-    <View className="p-8">
-      <Image
-        style={{ resizeMode: 'contain' }}
-        className="h-[30vh]"
-        source={{ uri: dataImg }}
+  return (
+    <View>
+      <Text className="text-center pt-4 text-lg font-bold">{dataName}</Text>
+      <View className="p-8">
+        <Image
+          style={{ resizeMode: 'contain' }}
+          className="h-[30vh]"
+          source={{ uri: dataImg }}
+        />
+      </View>
+
+      <Text className="text-center pt-4 text-lg font-bold">
+        This is {setNumber}
+      </Text>
+      <PrimaryButton
+        label={'Pieces Details'}
+        action={() => setShouldFetch(true)}
       />
+      {shouldFetch && (
+        <FetchWithVariant searchQuery={setNumber} variant="PARTS" />
+      )}
     </View>
-    <PrimaryButton
-      label={'Set Details'}
-      action={() => fetchMoreDetails(data)}
-    />
-  </View>
-);
+  );
+};

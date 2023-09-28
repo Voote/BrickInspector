@@ -1,32 +1,23 @@
-import { useEffect, useState, FC, useMemo } from 'react';
+import { FC, ReactNode, useEffect, useMemo, useState } from 'react';
 import { Text, View } from 'react-native';
 import { SetInfo } from '../../components/molecules/SetInfo/SetInfo';
 import { config } from '../../config';
-
-type FetchVariant = 'DEFAULT' | 'PARTS';
-
-const variantValue: Record<FetchVariant, string> = {
-  DEFAULT: '',
-  PARTS: 'parts',
-};
-
-interface FetchProps {
-  searchQuery: string;
-  variant?: FetchVariant;
-  type?: 'button' | 'submit' | 'reset' | undefined;
-}
+import { PartsList } from '../../components/molecules/PartsList/PartsList';
 
 export const FetchWithVariant: FC<FetchProps> = ({
   searchQuery,
-  variant = variantValue.DEFAULT,
+  variant = 'SET',
 }) => {
+  const { value: variantValue } = operationVariant[variant];
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const setNumber =
+    (searchQuery.endsWith('-1') && searchQuery) || `${searchQuery}-1`;
 
   const endpoint = useMemo(
     () =>
-      `${config.apiBaseUrl}/sets/${searchQuery}-1${variant}?key=${config.apiBaseKey}`,
+      `${config.apiBaseUrl}/sets/${setNumber}${variantValue}?key=${config.apiBaseKey}`,
     [searchQuery, variant],
   );
 
@@ -39,7 +30,7 @@ export const FetchWithVariant: FC<FetchProps> = ({
         if (!response.ok) {
           const errorMessage =
             response.status === 404
-              ? 'Data not found'
+              ? `Set ${setNumber} data not found`
               : 'Network response was not ok';
           throw new Error(errorMessage);
         }
@@ -54,21 +45,45 @@ export const FetchWithVariant: FC<FetchProps> = ({
     fetchData();
   }, [endpoint]);
 
+  const renderComponent = () => {
+    switch (variant) {
+      case 'SET':
+        return (
+          <SetInfo
+            dataName={data.name}
+            dataImg={data.set_img_url}
+            setNumber={data.set_num}
+          />
+        );
+      case 'PARTS':
+        return <PartsList piecesQuantity={data.count} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <View>
       {loading && <Text className="bg-green-500 mx-12">Loading...</Text>}
+      {console.log(endpoint)}
       {error && (
         <Text className="text-center text-red-500 p-2 font-bold">
           Error: {error.message}
         </Text>
       )}
-      {data && (
-        <SetInfo
-          dataName={data.name}
-          dataImg={data.set_img_url}
-          data={data}
-        />
-      )}
+      {data && renderComponent()}
     </View>
   );
 };
+
+type FetchVariant = 'SET' | 'PARTS';
+
+const operationVariant: Record<FetchVariant, { value: string }> = {
+  SET: { value: '/' },
+  PARTS: { value: '/parts' },
+};
+
+interface FetchProps {
+  searchQuery: string;
+  variant?: FetchVariant;
+}
