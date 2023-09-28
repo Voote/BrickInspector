@@ -1,3 +1,4 @@
+/// <reference types="nativewind/types" />
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { Logo } from './components/atoms/Logo/Logo';
