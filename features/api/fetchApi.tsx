@@ -1,8 +1,8 @@
-import { FC, ReactNode, useEffect, useMemo, useState } from 'react';
-import { Text, View } from 'react-native';
+import { FC, useEffect, useMemo, useState } from 'react';
+import { ScrollView, Text } from 'react-native';
+import { PartsList } from '../../components/molecules/PartsList/PartsList';
 import { SetInfo } from '../../components/molecules/SetInfo/SetInfo';
 import { config } from '../../config';
-import { PartsList } from '../../components/molecules/PartsList/PartsList';
 
 export const FetchWithVariant: FC<FetchProps> = ({
   searchQuery,
@@ -56,14 +56,14 @@ export const FetchWithVariant: FC<FetchProps> = ({
           />
         );
       case 'PARTS':
-        return <PartsList piecesQuantity={data.count} />;
+        return <PartsList pieces={data} />;
       default:
         return null;
     }
   };
 
   return (
-    <View>
+    <ScrollView>
       {loading && <Text className="bg-green-500 mx-12">Loading...</Text>}
       {console.log(endpoint)}
       {error && (
@@ -72,7 +72,7 @@ export const FetchWithVariant: FC<FetchProps> = ({
         </Text>
       )}
       {data && renderComponent()}
-    </View>
+    </ScrollView>
   );
 };
 

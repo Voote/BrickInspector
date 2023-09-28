@@ -16,10 +16,6 @@ export const SetInfo = ({ dataName, dataImg, setNumber }) => {
           source={{ uri: dataImg }}
         />
       </View>
-
-      <Text className="text-center pt-4 text-lg font-bold">
-        This is {setNumber}
-      </Text>
       <PrimaryButton
         label={'Pieces Details'}
         action={() => setShouldFetch(true)}
