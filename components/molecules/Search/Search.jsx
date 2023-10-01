@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { TextInput, View } from 'react-native';
-import { FetchWithVariant } from '../../../features/api/fetchApi';
-import { PrimaryButton } from '../../atoms/Button/PrimaryButton';
+// import { PrimaryButton } from '../../atoms/Button/PrimaryButton';
+// import { FetchWithVariant } from '../../../features/api/fetchApi';
+import { FetchWithVariant } from '@/features/api/fetchApi';
+import { PrimaryButton } from '@/components/atoms/Button/PrimaryButton';
 
 export const SetSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [shouldFetch, setShouldFetch] = useState(false);
   const isSearched = `${shouldFetch ? 'Change' : 'Search'} Set`;
-
   return (
     <View>
       <TextInput
