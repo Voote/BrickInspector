@@ -1,0 +1,159 @@
+{
+  "count": 9,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 739638,
+      "inv_part_id": 739638,
+      "part": {
+        "part_num": "87087",
+        "name": "Brick Special 1 x 1 with Stud on 1 Side",
+        "part_cat_id": 5,
+        "part_url": "https://rebrickable.com/parts/87087/brick-special-1-x-1-with-stud-on-1-side/",
+        "part_img_url": "https://cdn.rebrickable.com/media/parts/elements/4558955.jpg",
+        "external_ids": {
+          "BrickLink": ["87087"],
+          "BrickOwl": ["215571"],
+          "Brickset": ["87087"],
+          "LDraw": ["87087"],
+          "LEGO": ["87087"]
+        },
+        "print_of": null
+      },
+      "color": {
+        "id": 72,
+        "name": "Dark Bluish Gray",
+        "rgb": "6C6E68",
+        "is_trans": false
+      },
+      "set_num": "8073-1",
+      "quantity": 1,
+      "is_spare": false,
+      "element_id": "4558955",
+      "num_sets": 256
+    },
+    {
+      "id": 571725,
+      "inv_part_id": 571725,
+      "part": {
+        "part_num": "3040b",
+        "name": "Slope 45° 2 x 1 with Bottom Pin",
+        "part_cat_id": 3,
+        "part_url": "https://rebrickable.com/parts/3040b/slope-45-2-x-1-with-bottom-pin/",
+        "part_img_url": "https://cdn.rebrickable.com/media/parts/elements/4211135.jpg",
+        "external_ids": {
+          "BrickLink": ["3040"],
+          "BrickOwl": ["735007"],
+          "Brickset": ["3040", "35281", "6270"],
+          "LDraw": ["3040b"],
+          "LEGO": ["3040", "35281", "6270"]
+        },
+        "print_of": null
+      },
+      "color": {
+        "id": 72,
+        "name": "Dark Bluish Gray",
+        "rgb": "6C6E68",
+        "is_trans": false
+      },
+      "set_num": "8073-1",
+      "quantity": 2,
+      "is_spare": false,
+      "element_id": "4211135",
+      "num_sets": 437
+    },
+    {
+      "id": 727241,
+      "inv_part_id": 727241,
+      "part": {
+        "part_num": "55236",
+        "name": "Plant / Creature Body Part, Vine / Tail / Tentacle / Bionicle Spine, Spiky",
+        "part_cat_id": 28,
+        "part_url": "https://rebrickable.com/parts/55236/plant-creature-body-part-vine-tail-tentacle-bionicle-spine-spiky/",
+        "part_img_url": "https://cdn.rebrickable.com/media/parts/elements/4294148.jpg",
+        "print_of": null
+      },
+      "color": {
+        "id": 288,
+        "name": "Dark Green",
+        "rgb": "184632",
+        "is_trans": false
+      },
+      "set_num": "8073-1",
+      "quantity": 1,
+      "is_spare": false,
+      "element_id": "6369999",
+      "num_sets": 49
+    },
+    {
+      "id": 167393,
+      "inv_part_id": 167393,
+      "part": {
+        "part_num": "3023",
+        "name": "Plate 1 x 2",
+        "part_cat_id": 14,
+        "part_url": "https://rebrickable.com/parts/3023/plate-1-x-2/",
+        "part_img_url": "https://cdn.rebrickable.com/media/parts/elements/4211398.jpg",
+        "print_of": null
+      },
+      "color": {
+        "id": 71,
+        "name": "Light Bluish Gray",
+        "rgb": "A0A5A9",
+        "is_trans": false
+      },
+      "set_num": "8073-1",
+      "quantity": 1,
+      "is_spare": false,
+      "element_id": "4211398",
+      "num_sets": 1364
+    },
+    {
+      "id": 157433,
+      "inv_part_id": 157433,
+      "part": {
+        "part_num": "3021",
+        "name": "Plate 2 x 3",
+        "part_cat_id": 14,
+        "part_url": "https://rebrickable.com/parts/3021/plate-2-x-3/",
+        "part_img_url": "https://cdn.rebrickable.com/media/parts/elements/4211396.jpg",
+        "print_of": null
+      },
+      "color": {
+        "id": 71,
+        "name": "Light Bluish Gray",
+        "rgb": "A0A5A9",
+        "is_trans": false
+      },
+      "set_num": "8073-1",
+      "quantity": 1,
+      "is_spare": false,
+      "element_id": "4211396",
+      "num_sets": 891
+    },
+    {
+      "id": 762572,
+      "inv_part_id": 762572,
+      "part": {
+        "part_num": "54200",
+        "name": "Slope 30° 1 x 1 x 2/3 (Cheese Slope)",
+        "part_cat_id": 3,
+        "part_url": "https://rebrickable.com/parts/54200/slope-30-1-x-1-x-23-cheese-slope/",
+        "part_img_url": "https://cdn.rebrickable.com/media/parts/elements/4521921.jpg",
+        "print_of": null
+      },
+      "color": {
+        "id": 71,
+        "name": "Light Bluish Gray",
+        "rgb": "A0A5A9",
+        "is_trans": false
+      },
+      "set_num": "8073-1",
+      "quantity": 1,
+      "is_spare": false,
+      "element_id": "4521921",
+      "num_sets": 602
+    }
+  ]
+}
