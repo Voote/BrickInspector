@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { TextInput, View } from 'react-native';
 import { PrimaryButton } from '@/components/atoms/Button/PrimaryButton';
 import { FetchWithVariant } from '@/features/api/fetchApi';
+import { useState } from 'react';
+import { TextInput, View } from 'react-native';
 
 export const SetSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');

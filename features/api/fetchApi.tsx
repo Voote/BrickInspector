@@ -1,8 +1,8 @@
+import { PartsList } from '@/components/molecules/PartsList/PartsList';
+import { SetInfo } from '@/components/molecules/SetInfo/SetInfo';
+import { config } from '@/config';
 import { FC, useEffect, useMemo, useState } from 'react';
 import { ScrollView, Text } from 'react-native';
-import { PartsList } from '../../components/molecules/PartsList/PartsList';
-import { SetInfo } from '../../components/molecules/SetInfo/SetInfo';
-import { config } from '../../config';
 
 export const FetchWithVariant: FC<FetchProps> = ({
   searchQuery,

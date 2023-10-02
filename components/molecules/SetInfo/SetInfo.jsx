@@ -1,7 +1,7 @@
-import { Image, Text, View } from 'react-native';
-import { PrimaryButton } from '../../atoms/Button/PrimaryButton';
-import { FetchWithVariant } from '../../../features/api/fetchApi';
+import { PrimaryButton } from '@/components/atoms/Button/PrimaryButton';
+import { FetchWithVariant } from '@/features/api/fetchApi';
 import { useState } from 'react';
+import { Image, Text, View } from 'react-native';
 
 export const SetInfo = ({ dataName, dataImg, setNumber }) => {
   const [shouldFetch, setShouldFetch] = useState(false);
