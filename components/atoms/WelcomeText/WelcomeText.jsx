@@ -1,7 +1,7 @@
-import { Text } from 'react-native';
+import { StyledLabel } from '../Label/StyledLabel';
 
 export const WelcomeText = () => (
-  <Text className="mx-12 text-green-600 text-lg font-bold leading-5 text-center">
+  <StyledLabel variant="heading">
     Welcome to BrickInspector, your handy list of LEGO sets condition
-  </Text>
+  </StyledLabel>
 );

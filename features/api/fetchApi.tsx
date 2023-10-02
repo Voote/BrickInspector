@@ -1,3 +1,4 @@
+import { StyledLabel } from '@/components/atoms/Label/StyledLabel';
 import { PartsList } from '@/components/molecules/PartsList/PartsList';
 import { SetInfo } from '@/components/molecules/SetInfo/SetInfo';
 import { config } from '@/config';
@@ -67,9 +68,7 @@ export const FetchWithVariant: FC<FetchProps> = ({
       {loading && <Text className="bg-green-500 mx-12">Loading...</Text>}
       {console.log(endpoint)}
       {error && (
-        <Text className="text-center text-red-500 p-2 font-bold">
-          Error: {error.message}
-        </Text>
+        <StyledLabel variant="error">Error: {error.message}</StyledLabel>
       )}
       {data && renderComponent()}
     </ScrollView>
