@@ -15,10 +15,11 @@ export const StyledLabel: FC<StyledLabelProps> = ({
   return <Text className={labelClasses}>{children}</Text>;
 };
 
-type LabelVariant = 'default' | 'error' | 'heading' | 'info';
+type LabelVariant = 'default' | 'loading' | 'info' | 'error' | 'heading';
 
 const labelStyles: Record<LabelVariant, { styles: string }> = {
   default: { styles: 'text-center' },
+  loading: { styles: 'bg-green-500 mx-4 p-1' },
   info: { styles: 'text-center text-white font-light' },
   error: { styles: 'text-center text-red-500 p-2 font-bold' },
   heading: {
