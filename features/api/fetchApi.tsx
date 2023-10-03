@@ -1,10 +1,10 @@
+import { StyledLabel } from '@/components/atoms/Label/StyledLabel';
 import { PartsList } from '@/components/molecules/PartsList/PartsList';
 import { SetInfo } from '@/components/molecules/SetInfo/SetInfo';
 import { config } from '@/config';
 import { FC, useMemo } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 import { useFetchData } from '../hooks/useFetchData';
-import { StyledLabel } from '@/components/atoms/Label/StyledLabel';
 
 export const FetchWithVariant: FC<FetchProps> = ({
   searchQuery,
@@ -15,7 +15,7 @@ export const FetchWithVariant: FC<FetchProps> = ({
     (searchQuery.endsWith('-1') && searchQuery) || `${searchQuery}-1`;
   const endpoint = useMemo(
     () =>
-      `${config.apiBaseUrl}/sets/${setNumber}${variantValue}?key=${config.apiBaseKey}`,
+      `${config.apiBaseUrl}${setNumber}${variantValue}${config.apiBaseKey}`,
     [searchQuery, variant],
   );
   const { data, error, loading } = useFetchData(endpoint);
