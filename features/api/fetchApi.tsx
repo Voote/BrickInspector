@@ -1,5 +1,5 @@
 import { StyledLabel } from '@/components/atoms/Label/StyledLabel';
-import { RenderedComponent } from '@/components/molecules/RenderedComponent/renderedComponent';
+import { RenderComponent } from '@/components/molecules/RenderComponent/renderComponent';
 import { endpoints } from '@/shared/endpoint';
 import { FC, useMemo } from 'react';
 import { ScrollView } from 'react-native';
@@ -27,7 +27,7 @@ export const FetchWithVariant: FC<FetchProps> = ({
       {error && (
         <StyledLabel variant="error">Error: {error.message}</StyledLabel>
       )}
-      {data && RenderedComponent({ data, variant })}
+      {data && RenderComponent({ data, variant })}
     </ScrollView>
   );
 };
