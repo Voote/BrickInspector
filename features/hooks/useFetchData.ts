@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { FetchedData } from '../helpers/dataTypes';
+import { FetchedDataProps, SetInfoProps } from '../helpers/dataTypes';
 
 export const useFetchData = (endpoint: string) => {
-  const [data, setData] = useState<FetchedData | null>(null);
+  const [data, setData] = useState<FetchedDataProps | SetInfoProps | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 

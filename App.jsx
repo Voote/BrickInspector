@@ -5,16 +5,19 @@ import { Logo } from './components/atoms/Logo/Logo';
 import { WelcomeText } from './components/atoms/WelcomeText/WelcomeText';
 import { SetSearch } from './components/molecules/Search/Search';
 import { CustomSafeAreaView } from './features/helpers/CustomSafeAreaView/CustomSafeAreaView';
+import { FetchProvider } from './features/helpers/fetchContext';
 
 export default function App() {
   return (
-    <CustomSafeAreaView>
-      <Logo />
-      <WelcomeText />
-      <View className="w-full pt-4">
-        <SetSearch />
-        <StatusBar style="" />
-      </View>
-    </CustomSafeAreaView>
+    <FetchProvider>
+      <CustomSafeAreaView>
+        <Logo />
+        <WelcomeText />
+        <View className="w-full pt-4">
+          <SetSearch />
+          <StatusBar style="" />
+        </View>
+      </CustomSafeAreaView>
+    </FetchProvider>
   );
 }

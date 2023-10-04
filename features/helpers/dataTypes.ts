@@ -35,7 +35,7 @@ interface ResultItem {
   num_sets: number;
 }
 
-export interface FetchedData {
+export interface FetchedDataProps {
   count: number;
   next: null | string; // Adjust the type if "next" can be other than null
   previous: null | string; // Adjust the type if "previous" can be other than null
