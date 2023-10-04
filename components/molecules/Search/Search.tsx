@@ -12,6 +12,7 @@ export const SetSearch = () => {
       <TextInput
         className="mx-24 text-center"
         placeholder="Enter set number"
+        keyboardType="numeric"
         onChangeText={(text) => {
           setSearchQuery(text);
           setShouldFetch(false);
