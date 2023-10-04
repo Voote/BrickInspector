@@ -1,10 +1,13 @@
+import { FetchedDataProps } from '@/features/helpers/dataTypes';
 import { Image, Text, View } from 'react-native';
 
-export const PartsList = ({ pieces }) => (
+export const PartsList: React.FC<PartListProps> = ({ partsData }) => (
   <View>
-    <Text className="text-center pt-4 text-lg font-bold">{pieces.count}</Text>
+    <Text className="text-center pt-4 text-lg font-bold">
+      {partsData.count}
+    </Text>
     <View>
-      {pieces.results.map((item, index) => (
+      {partsData.results.map((item, index) => (
         <View
           key={index}
           className="flex flex-row p-4 border-b-2 items-center"
@@ -26,3 +29,7 @@ export const PartsList = ({ pieces }) => (
     </View>
   </View>
 );
+
+interface PartListProps {
+  partsData: FetchedDataProps;
+}

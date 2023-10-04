@@ -1,10 +1,14 @@
 import { PrimaryButton } from '@/components/atoms/Button/PrimaryButton';
 import { FetchWithVariant } from '@/features/api/fetchApi';
-import { useFetch } from '@/features/helpers/fetchContext';
+import { useState } from 'react';
 import { Image, Text, View } from 'react-native';
 
-export const SetInfo = ({ dataName, dataImg, setNumber }) => {
-  const { shouldFetch, setShouldFetch } = useFetch();
+export const SetInfo: React.FC<SetInfoProps> = ({
+  dataName,
+  dataImg,
+  setNumber,
+}) => {
+  const [shouldFetchParts, setShouldFetchParts] = useState(false);
 
   return (
     <View>
@@ -18,11 +22,17 @@ export const SetInfo = ({ dataName, dataImg, setNumber }) => {
       </View>
       <PrimaryButton
         label={'Pieces Details'}
-        action={() => setShouldFetch(true)}
+        action={() => setShouldFetchParts(true)}
       />
-      {shouldFetch && (
+      {shouldFetchParts && (
         <FetchWithVariant searchQuery={setNumber} variant="PARTS" />
       )}
     </View>
   );
 };
+
+interface SetInfoProps {
+  dataName: string;
+  dataImg: string;
+  setNumber: string;
+}

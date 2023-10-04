@@ -18,7 +18,9 @@ export const SetSearch = () => {
         }}
       />
       <PrimaryButton action={() => setShouldFetch(true)} label={isSearched} />
-      {shouldFetch && <FetchWithVariant searchQuery={searchQuery} />}
+      {shouldFetch && (
+        <FetchWithVariant searchQuery={searchQuery} variant="SET" />
+      )}
     </View>
   );
 };

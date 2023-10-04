@@ -7,7 +7,7 @@ import { useFetchData } from '../hooks/useFetchData';
 
 export const FetchWithVariant: FC<FetchProps> = ({
   searchQuery,
-  variant = 'SET',
+  variant,
 }) => {
   const setNumber = useMemo(() => {
     return searchQuery.endsWith('-1') ? searchQuery : `${searchQuery}-1`;
@@ -27,7 +27,7 @@ export const FetchWithVariant: FC<FetchProps> = ({
       {error && (
         <StyledLabel variant="error">Error: {error.message}</StyledLabel>
       )}
-      {data && RenderComponent({ data, variant })}
+      {data && <RenderComponent data={data} variant={variant} />}
     </ScrollView>
   );
 };
@@ -41,5 +41,5 @@ const operationVariant: Record<FetchVariant, { value: string }> = {
 
 interface FetchProps {
   searchQuery: string;
-  variant?: FetchVariant;
+  variant: FetchVariant;
 }
