@@ -1,77 +1,33 @@
-import { FC, useEffect, useMemo, useState } from 'react';
-import { ScrollView, Text } from 'react-native';
-import { PartsList } from '../../components/molecules/PartsList/PartsList';
-import { SetInfo } from '../../components/molecules/SetInfo/SetInfo';
-import { config } from '../../config';
+import { StyledLabel } from '@/components/atoms/Label/StyledLabel';
+import { RenderComponent } from '@/components/molecules/RenderComponent/renderComponent';
+import { endpoints } from '@/shared/endpoint';
+import { FC, useMemo } from 'react';
+import { ScrollView } from 'react-native';
+import { useFetchData } from '../hooks/useFetchData';
 
 export const FetchWithVariant: FC<FetchProps> = ({
   searchQuery,
-  variant = 'SET',
+  variant,
 }) => {
-  const { value: variantValue } = operationVariant[variant];
-  const [data, setData] = useState<any>(null);
-  const [error, setError] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const setNumber =
-    (searchQuery.endsWith('-1') && searchQuery) || `${searchQuery}-1`;
+  const setNumber = useMemo(() => {
+    return searchQuery.endsWith('-1') ? searchQuery : `${searchQuery}-1`;
+  }, [searchQuery]);
 
-  const endpoint = useMemo(
-    () =>
-      `${config.apiBaseUrl}/sets/${setNumber}${variantValue}?key=${config.apiBaseKey}`,
-    [searchQuery, variant],
-  );
+  const endpoint = useMemo(() => {
+    const { value: variantValue } = operationVariant[variant];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(endpoint);
-        if (!response.ok) {
-          const errorMessage =
-            response.status === 404
-              ? `Set ${setNumber} data not found`
-              : 'Network response was not ok';
-          throw new Error(errorMessage);
-        }
-        const json = await response.json();
-        setData(json);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [endpoint]);
+    return endpoints.getSetInfo({ setNumber, variantValue });
+  }, [searchQuery, variant]);
 
-  const renderComponent = () => {
-    switch (variant) {
-      case 'SET':
-        return (
-          <SetInfo
-            dataName={data.name}
-            dataImg={data.set_img_url}
-            setNumber={data.set_num}
-          />
-        );
-      case 'PARTS':
-        return <PartsList pieces={data} />;
-      default:
-        return null;
-    }
-  };
+  const { data, error, loading } = useFetchData(endpoint);
 
   return (
     <ScrollView>
-      {loading && <Text className="bg-green-500 mx-12">Loading...</Text>}
-      {console.log(endpoint)}
+      {loading && <StyledLabel variant="loading">Loading...</StyledLabel>}
       {error && (
-        <Text className="text-center text-red-500 p-2 font-bold">
-          Error: {error.message}
-        </Text>
+        <StyledLabel variant="error">Error: {error.message}</StyledLabel>
       )}
-      {data && renderComponent()}
+      {data && <RenderComponent data={data} variant={variant} />}
     </ScrollView>
   );
 };
@@ -85,5 +41,5 @@ const operationVariant: Record<FetchVariant, { value: string }> = {
 
 interface FetchProps {
   searchQuery: string;
-  variant?: FetchVariant;
+  variant: FetchVariant;
 }

@@ -1,0 +1,38 @@
+import { PrimaryButton } from '@/components/atoms/Button/PrimaryButton';
+import { FetchWithVariant } from '@/features/api/fetchApi';
+import { useState } from 'react';
+import { Image, Text, View } from 'react-native';
+
+export const SetInfo: React.FC<SetInfoProps> = ({
+  dataName,
+  dataImg,
+  setNumber,
+}) => {
+  const [shouldFetchParts, setShouldFetchParts] = useState(false);
+
+  return (
+    <View>
+      <Text className="text-center pt-4 text-lg font-bold">{dataName}</Text>
+      <View className="p-8">
+        <Image
+          style={{ resizeMode: 'contain' }}
+          className="h-[30vh]"
+          source={{ uri: dataImg }}
+        />
+      </View>
+      <PrimaryButton
+        label={'Pieces Details'}
+        action={() => setShouldFetchParts(true)}
+      />
+      {shouldFetchParts && (
+        <FetchWithVariant searchQuery={setNumber} variant="PARTS" />
+      )}
+    </View>
+  );
+};
+
+interface SetInfoProps {
+  dataName: string;
+  dataImg: string;
+  setNumber: string;
+}

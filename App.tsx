@@ -13,7 +13,7 @@ export default function App() {
       <WelcomeText />
       <View className="w-full pt-4">
         <SetSearch />
-        <StatusBar style="" />
+        <StatusBar />
       </View>
     </CustomSafeAreaView>
   );
