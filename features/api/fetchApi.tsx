@@ -5,10 +5,7 @@ import { FC, useMemo } from 'react';
 import { ScrollView } from 'react-native';
 import { useFetchData } from '../hooks/useFetchData';
 
-export const FetchWithVariant: FC<FetchProps> = ({
-  searchQuery,
-  variant,
-}) => {
+export const FetchApi: FC<FetchProps> = ({ searchQuery, variant }) => {
   const setNumber = useMemo(() => {
     return searchQuery.endsWith('-1') ? searchQuery : `${searchQuery}-1`;
   }, [searchQuery]);
