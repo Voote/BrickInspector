@@ -1,4 +1,4 @@
-import { PrimaryButton } from '@/components/atoms/Button/PrimaryButton';
+import { PrimaryButton } from '@/components/atoms/PrimaryButton/PrimaryButton';
 import { FetchApi } from '@/features/api/fetchApi';
 import { useState } from 'react';
 import { TextInput, View } from 'react-native';

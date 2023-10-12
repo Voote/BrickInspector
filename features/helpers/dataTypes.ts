@@ -23,7 +23,7 @@ interface ColorProps {
   is_trans: boolean;
 }
 
-interface ResultItem {
+export interface ResultItem {
   id: number;
   inv_part_id: number;
   part: PartProps;

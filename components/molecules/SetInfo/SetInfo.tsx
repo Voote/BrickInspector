@@ -1,4 +1,4 @@
-import { PrimaryButton } from '@/components/atoms/Button/PrimaryButton';
+import { PrimaryButton } from '@/components/atoms/PrimaryButton/PrimaryButton';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Image, Text, View } from 'react-native';
