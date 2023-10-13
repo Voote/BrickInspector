@@ -2,7 +2,7 @@ import { StyledLabel } from '@/components/atoms/Label/StyledLabel';
 import { RenderComponent } from '@/components/molecules/RenderComponent/renderComponent';
 import { endpoints } from '@/shared/endpoint';
 import { FC, useMemo } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useFetchData } from '../hooks/useFetchData';
 
 export const FetchApi: FC<FetchProps> = ({ searchQuery, variant }) => {
@@ -19,13 +19,13 @@ export const FetchApi: FC<FetchProps> = ({ searchQuery, variant }) => {
   const { data, error, loading } = useFetchData(endpoint);
 
   return (
-    <ScrollView>
+    <View className="flex-1">
       {loading && <StyledLabel variant="loading">Loading...</StyledLabel>}
       {error && (
         <StyledLabel variant="error">Error: {error.message}</StyledLabel>
       )}
       {data && <RenderComponent data={data} variant={variant} />}
-    </ScrollView>
+    </View>
   );
 };
 

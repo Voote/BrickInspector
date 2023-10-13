@@ -3,14 +3,14 @@ import { SetSearch } from '@/components/molecules/Search/Search';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import { styles } from './AppNavigator.styles';
 
 const Stack = createStackNavigator();
 
 export const AppNavigator = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
@@ -34,6 +34,6 @@ export const AppNavigator = () => {
           <Stack.Screen name="PartsListScreen" component={PartsListScreen} />
         </Stack.Navigator>
       </NavigationContainer>
-    </View>
+    </SafeAreaView>
   );
 };

@@ -1,22 +1,18 @@
 import classNames from 'classnames';
 import { GestureResponderEvent, Text, TouchableOpacity } from 'react-native';
 
-interface CountButtonProps {
-  label: string;
-  variant?: CountButtonVariant;
-  action: (event: GestureResponderEvent) => void;
-}
-
 export const CountButton: React.FC<CountButtonProps> = ({
   label,
   variant = 'default',
   action,
+  longAction,
 }) => {
   const { color: buttonColor } = buttonVariantStyles[variant];
   return (
     <TouchableOpacity
       className={classNames(buttonColor, 'my-1')}
       onPress={action}
+      onLongPress={longAction}
     >
       <Text className="text-center text-white font-extrabold text-lg">
         {label}
@@ -32,3 +28,10 @@ const buttonVariantStyles: Record<CountButtonVariant, { color: string }> = {
   positive: { color: 'bg-[#0055BF]' },
   negative: { color: 'bg-[#C91A09]' },
 };
+
+interface CountButtonProps {
+  label: string;
+  variant?: CountButtonVariant;
+  action: (event: GestureResponderEvent) => void;
+  longAction?: (event: GestureResponderEvent) => void;
+}
