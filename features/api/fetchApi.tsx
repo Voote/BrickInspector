@@ -2,7 +2,7 @@ import { StyledLabel } from '@/components/atoms/Label/StyledLabel';
 import { RenderComponent } from '@/components/molecules/RenderComponent/renderComponent';
 import { endpoints } from '@/shared/endpoint';
 import { FC, useMemo } from 'react';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import { useFetchData } from '../hooks/useFetchData';
 
 export const FetchApi: FC<FetchProps> = ({ searchQuery, variant }) => {

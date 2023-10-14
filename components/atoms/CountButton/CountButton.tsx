@@ -7,14 +7,21 @@ export const CountButton: React.FC<CountButtonProps> = ({
   action,
   longAction,
 }) => {
-  const { color: buttonColor } = buttonVariantStyles[variant];
+  const { color: buttonColor, text: buttonTextColor } =
+    buttonVariantStyles[variant];
+
   return (
     <TouchableOpacity
       className={classNames(buttonColor, 'my-1')}
       onPress={action}
       onLongPress={longAction}
     >
-      <Text className="text-center text-white font-extrabold text-lg">
+      <Text
+        className={classNames(
+          buttonTextColor,
+          'text-center font-extrabold text-lg',
+        )}
+      >
         {label}
       </Text>
     </TouchableOpacity>
@@ -23,10 +30,13 @@ export const CountButton: React.FC<CountButtonProps> = ({
 
 type CountButtonVariant = 'default' | 'positive' | 'negative';
 
-const buttonVariantStyles: Record<CountButtonVariant, { color: string }> = {
-  default: { color: 'bg-[#582A12]' },
-  positive: { color: 'bg-[#0055BF]' },
-  negative: { color: 'bg-[#C91A09]' },
+const buttonVariantStyles: Record<
+  CountButtonVariant,
+  { color: string; text: string }
+> = {
+  default: { color: 'bg-[#582A12]', text: 'text-black' },
+  positive: { color: 'bg-[#0055BF]', text: 'text-white' },
+  negative: { color: 'bg-[#C91A09]', text: 'text-white' },
 };
 
 interface CountButtonProps {

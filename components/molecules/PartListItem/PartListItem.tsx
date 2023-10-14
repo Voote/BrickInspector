@@ -1,7 +1,7 @@
 import { CountButton } from '@/components/atoms/CountButton/CountButton';
 import { ResultItem } from '@/features/helpers/dataTypes';
 import { FC } from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, Text, TextInput, View } from 'react-native';
 
 interface PartListItemProps {
   item: ResultItem;
@@ -18,8 +18,12 @@ export const PartListItem: FC<PartListItemProps> = ({
     <View className="flex-1">
       <Text>Name: {item.part.name}</Text>
       <Text>Color: {item.color.name}</Text>
-      <Text>Original Quantity: {item.quantity}</Text>
-      <Text>Missing: {Math.max(0, item.quantity - userQuantity)}</Text>
+      <View className="flex flex-row gap-4">
+        <Text>Original Quantity: {item.quantity}</Text>
+        <Text className="text-red-700 font-semibold">
+          Missing: {Math.max(0, item.quantity - userQuantity)}
+        </Text>
+      </View>
     </View>
     <View className="pl-2">
       <CountButton
@@ -28,7 +32,16 @@ export const PartListItem: FC<PartListItemProps> = ({
         action={() => adjustQuantity(1)}
         longAction={() => adjustQuantity(10)}
       />
-      <Text className="px-2 w-8 text-center">{userQuantity}</Text>
+      <TextInput
+        value={String(userQuantity)}
+        onChangeText={(text) => {
+          const newValue = parseInt(text, 10);
+          (text === '' && adjustQuantity(-userQuantity)) ||
+            (!isNaN(newValue) && adjustQuantity(newValue - userQuantity));
+        }}
+        keyboardType="numeric"
+        style={{ width: 50, textAlign: 'center' }}
+      />
       <CountButton
         label="-"
         variant="negative"

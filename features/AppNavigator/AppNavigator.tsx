@@ -2,7 +2,6 @@ import { PartsListScreen } from '@/components/molecules/PartsListScreen/PartsLis
 import { SetSearch } from '@/components/molecules/Search/Search';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
 import { styles } from './AppNavigator.styles';
 

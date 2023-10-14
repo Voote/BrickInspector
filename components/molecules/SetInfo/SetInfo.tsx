@@ -19,7 +19,7 @@ export const SetInfo: React.FC<SetInfoProps> = ({
 
   return (
     <View>
-      <Text className="text-center pt-4 text-lg font-bold ">{dataName}</Text>
+      <Text className="text-center pt-4 text-lg font-bold">{dataName}</Text>
       <View className="p-8">
         <Image
           style={{ resizeMode: 'contain' }}
