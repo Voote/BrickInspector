@@ -1,5 +1,5 @@
 import { PrimaryButton } from '@/components/atoms/Button/PrimaryButton';
-import { FetchWithVariant } from '@/features/api/fetchApi';
+import { FetchApi } from '@/features/api/fetchApi';
 import { useState } from 'react';
 import { TextInput, View } from 'react-native';
 
@@ -8,7 +8,7 @@ export const SetSearch = () => {
   const [shouldFetch, setShouldFetch] = useState(false);
   const isSearched = `${shouldFetch ? 'Change' : 'Search'} Set`;
   return (
-    <View>
+    <View className="bg-gray-600 flex-1 pt-2">
       <TextInput
         className="mx-24 text-center"
         placeholder="Enter set number"
@@ -19,9 +19,7 @@ export const SetSearch = () => {
         }}
       />
       <PrimaryButton action={() => setShouldFetch(true)} label={isSearched} />
-      {shouldFetch && (
-        <FetchWithVariant searchQuery={searchQuery} variant="SET" />
-      )}
+      {shouldFetch && <FetchApi searchQuery={searchQuery} variant="SET" />}
     </View>
   );
 };

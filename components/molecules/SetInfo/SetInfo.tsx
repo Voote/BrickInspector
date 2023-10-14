@@ -1,18 +1,25 @@
 import { PrimaryButton } from '@/components/atoms/Button/PrimaryButton';
-import { FetchWithVariant } from '@/features/api/fetchApi';
-import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { Image, Text, View } from 'react-native';
+
+type RootStackParamList = {
+  SetSearch: undefined;
+  PartsListScreen: { setNumber: string };
+};
+
+type NavigationProp = StackNavigationProp<RootStackParamList, 'SetSearch'>;
 
 export const SetInfo: React.FC<SetInfoProps> = ({
   dataName,
   dataImg,
   setNumber,
 }) => {
-  const [shouldFetchParts, setShouldFetchParts] = useState(false);
+  const navigation = useNavigation<NavigationProp>();
 
   return (
     <View>
-      <Text className="text-center pt-4 text-lg font-bold">{dataName}</Text>
+      <Text className="text-center pt-4 text-lg font-bold ">{dataName}</Text>
       <View className="p-8">
         <Image
           style={{ resizeMode: 'contain' }}
@@ -22,11 +29,10 @@ export const SetInfo: React.FC<SetInfoProps> = ({
       </View>
       <PrimaryButton
         label={'Pieces Details'}
-        action={() => setShouldFetchParts(true)}
+        action={() =>
+          navigation.navigate('PartsListScreen', { setNumber: setNumber })
+        }
       />
-      {shouldFetchParts && (
-        <FetchWithVariant searchQuery={setNumber} variant="PARTS" />
-      )}
     </View>
   );
 };

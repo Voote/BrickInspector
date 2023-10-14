@@ -1,20 +1,18 @@
 /// <reference types="nativewind/types" />
 import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
+import { enableScreens } from 'react-native-screens';
 import { Logo } from './components/atoms/Logo/Logo';
-import { WelcomeText } from './components/atoms/WelcomeText/WelcomeText';
-import { SetSearch } from './components/molecules/Search/Search';
+import { AppNavigator } from './features/AppNavigator/AppNavigator';
 import { CustomSafeAreaView } from './features/helpers/CustomSafeAreaView/CustomSafeAreaView';
 
 export default function App() {
+  enableScreens();
+
   return (
     <CustomSafeAreaView>
       <Logo />
-      <WelcomeText />
-      <View className="w-full pt-4">
-        <SetSearch />
-        <StatusBar />
-      </View>
+      <AppNavigator />
+      <StatusBar />
     </CustomSafeAreaView>
   );
 }
