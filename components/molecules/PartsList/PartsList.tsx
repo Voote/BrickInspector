@@ -21,11 +21,17 @@ export const PartsList: FC<PartListProps> = ({ partsData }) => {
       return newQuantities;
     });
   }, []);
+  const missingPartsCount = partsData.results.reduce(
+    (acc, item, index) =>
+      acc + Math.max(0, item.quantity - userQuantities[index]),
+    0,
+  );
 
   return (
     <View className="bg-gray-400 flex-1">
       <Text className="text-center pt-4 text-lg font-bold">
-        {partsData.count}
+        Missing <Text className="text-red-700">{missingPartsCount}</Text> of{' '}
+        {partsData.count} types
       </Text>
       <FlatList
         data={partsData.results}

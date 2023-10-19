@@ -18,8 +18,8 @@ export const PartListItem: FC<PartListItemProps> = ({
     <View className="flex-1">
       <Text>Name: {item.part.name}</Text>
       <Text>Color: {item.color.name}</Text>
-      <View className="flex flex-row gap-4">
-        <Text>Original Quantity: {item.quantity}</Text>
+      <View className="flex flex-row gap-8">
+        <Text>Quantity: {item.quantity}</Text>
         <Text className="text-red-700 font-semibold">
           Missing: {Math.max(0, item.quantity - userQuantity)}
         </Text>
