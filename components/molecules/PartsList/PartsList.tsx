@@ -12,13 +12,21 @@ export const PartsList: FC<PartListProps> = ({ partsData }) => {
     );
   }, [partsData]);
 
-  const adjustQuantity = useCallback((index: number, adjustment: number) => {
-    setUserQuantities((prevQuantities) => {
-      const newQuantities = [...prevQuantities];
-      newQuantities[index] = Math.max(0, newQuantities[index] + adjustment);
-      return newQuantities;
-    });
-  }, [userQuantities]);
+  const totalQuantity = partsData.results.reduce(
+    (acc, item) => acc + item.quantity,
+    0,
+  );
+
+  const adjustQuantity = useCallback(
+    (index: number, adjustment: number) => {
+      setUserQuantities((prevQuantities) => {
+        const newQuantities = [...prevQuantities];
+        newQuantities[index] = Math.max(0, newQuantities[index] + adjustment);
+        return newQuantities;
+      });
+    },
+    [userQuantities],
+  );
   const missingPartsCount = partsData.results.reduce(
     (acc, item, index) =>
       acc + Math.max(0, item.quantity - userQuantities[index]),
@@ -29,7 +37,7 @@ export const PartsList: FC<PartListProps> = ({ partsData }) => {
     <View className="bg-gray-400 flex-1">
       <Text className="text-center pt-4 text-lg font-bold">
         Missing <Text className="text-red-700">{missingPartsCount}</Text> of{' '}
-        {partsData.count} types
+        {totalQuantity} parts
       </Text>
       <FlatList
         data={partsData.results}
@@ -60,4 +68,4 @@ interface PartListProps {
 interface RenderItemProps {
   item: ResultItem;
   index: number;
-};
+}
