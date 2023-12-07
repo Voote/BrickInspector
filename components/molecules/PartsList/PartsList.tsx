@@ -14,13 +14,11 @@ export const PartsList: FC<PartListProps> = ({ partsData }) => {
 
   const adjustQuantity = useCallback((index: number, adjustment: number) => {
     setUserQuantities((prevQuantities) => {
-      const updatedQuantity = Math.max(0, prevQuantities[index] + adjustment);
-      if (updatedQuantity === prevQuantities[index]) return prevQuantities;
       const newQuantities = [...prevQuantities];
-      newQuantities[index] = updatedQuantity;
+      newQuantities[index] = Math.max(0, newQuantities[index] + adjustment);
       return newQuantities;
     });
-  }, []);
+  }, [userQuantities]);
   const missingPartsCount = partsData.results.reduce(
     (acc, item, index) =>
       acc + Math.max(0, item.quantity - userQuantities[index]),
@@ -36,16 +34,22 @@ export const PartsList: FC<PartListProps> = ({ partsData }) => {
       <FlatList
         data={partsData.results}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item, index }) => (
-          <PartListItem
-            item={item}
-            userQuantity={userQuantities[index]}
-            adjustQuantity={(adjustment: number) =>
-              adjustQuantity(index, adjustment)
-            }
-          />
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        windowSize={5}
+        renderItem={useCallback(
+          ({ item, index }: RenderItemProps) => (
+            <PartListItem
+              item={item}
+              userQuantity={userQuantities[index]}
+              adjustQuantity={(adjustment: number) =>
+                adjustQuantity(index, adjustment)
+              }
+            />
+          ),
+          [userQuantities, adjustQuantity],
         )}
-      ></FlatList>
+      />
     </View>
   );
 };
@@ -53,3 +57,7 @@ export const PartsList: FC<PartListProps> = ({ partsData }) => {
 interface PartListProps {
   partsData: FetchedDataProps;
 }
+interface RenderItemProps {
+  item: ResultItem;
+  index: number;
+};
