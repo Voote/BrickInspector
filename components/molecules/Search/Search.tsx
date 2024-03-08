@@ -7,6 +7,7 @@ export const SetSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [shouldFetch, setShouldFetch] = useState(false);
   const isSearched = `${shouldFetch ? 'Change' : 'Search'} Set`;
+
   return (
     <View className="bg-gray-600 flex-1 pt-2">
       <TextInput
