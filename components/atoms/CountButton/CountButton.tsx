@@ -1,6 +1,7 @@
 import classNames from 'classnames';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { GestureResponderEvent, Text, TouchableOpacity } from 'react-native';
+import { CountButtonVariant, buttonVariantStyles } from './CountButton.style';
 
 export const CountButton: FC<CountButtonProps> = ({
   label,
@@ -10,30 +11,49 @@ export const CountButton: FC<CountButtonProps> = ({
 }) => {
   const { color: buttonColor, text: buttonTextColor } =
     buttonVariantStyles[variant];
-  const [intervalId, setIntervalId] = useState<number | null>(null);
+  const intervalRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current !== null) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
 
   const handleLongPress = (event: GestureResponderEvent) => {
     if (longAction) {
-      longAction(event); // Initial long press action
-      // Start the interval and store its ID
-      const id = setInterval(() => longAction(event), 500);
-      setIntervalId(id);
+      longAction(event);
+      const startTime = Date.now();
+
+      const triggerAction = () => {
+        const elapsedTime = Date.now() - startTime;
+        longAction(event);
+        let nextIntervalDuration = elapsedTime > 4000 ? 1000 : 500;
+        updateIntervalRef(setTimeout(triggerAction, nextIntervalDuration));
+      };
+      updateIntervalRef(setTimeout(triggerAction, 500));
     }
   };
 
-  const handlePressOut = () => {
-    if (intervalId !== null) {
-      clearInterval(intervalId);
-      setIntervalId(null);
+  const updateIntervalRef = (newValue: number | null) => {
+    if (intervalRef.current !== null) {
+      clearTimeout(intervalRef.current);
     }
+    intervalRef.current = newValue;
+  };
+
+  const handlePressOut = () => {
+    updateIntervalRef(null);
   };
 
   return (
     <TouchableOpacity
       className={classNames(buttonColor, 'my-1')}
+      accessibilityLabel={label}
       onPress={action}
       onLongPress={handleLongPress}
-      onPressOut={handlePressOut} // Make sure to bind `handlePressOut` to stop the interval
+      onPressOut={handlePressOut}
     >
       <Text
         className={classNames(
@@ -45,17 +65,6 @@ export const CountButton: FC<CountButtonProps> = ({
       </Text>
     </TouchableOpacity>
   );
-};
-
-type CountButtonVariant = 'default' | 'positive' | 'negative';
-
-const buttonVariantStyles: Record<
-  CountButtonVariant,
-  { color: string; text: string }
-> = {
-  default: { color: 'bg-[#582A12]', text: 'text-black' },
-  positive: { color: 'bg-[#0055BF]', text: 'text-white' },
-  negative: { color: 'bg-[#C91A09]', text: 'text-white' },
 };
 
 interface CountButtonProps {
