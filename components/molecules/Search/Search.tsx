@@ -1,4 +1,4 @@
-import { PrimaryButton } from '@/components/atoms/Button/PrimaryButton';
+import { PrimaryButton } from '@/components/atoms/PrimaryButton/PrimaryButton';
 import { FetchApi } from '@/features/api/fetchApi';
 import { useState } from 'react';
 import { TextInput, View } from 'react-native';
@@ -7,6 +7,7 @@ export const SetSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [shouldFetch, setShouldFetch] = useState(false);
   const isSearched = `${shouldFetch ? 'Change' : 'Search'} Set`;
+
   return (
     <View className="bg-gray-600 flex-1 pt-2">
       <TextInput
