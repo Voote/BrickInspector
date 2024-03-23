@@ -3,9 +3,10 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Image, Text, View } from 'react-native';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   SetSearch: undefined;
   PartsListScreen: { setNumber: string };
+  SavedSetsScreen: undefined;
 };
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'SetSearch'>;
