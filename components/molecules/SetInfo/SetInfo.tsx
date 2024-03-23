@@ -6,7 +6,6 @@ import { Image, Text, View } from 'react-native';
 export type RootStackParamList = {
   SetSearch: undefined;
   PartsListScreen: { setNumber: string };
-  SavedSetsScreen: undefined;
 };
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'SetSearch'>;
