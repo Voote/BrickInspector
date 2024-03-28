@@ -13,7 +13,7 @@ interface PartProps {
   part_url: string;
   part_img_url: string;
   external_ids: ExternalIds;
-  print_of: null | string; // Adjust the type if "print_of" can be other than null
+  print_of: null | string;
 }
 
 interface ColorProps {
@@ -37,8 +37,8 @@ export interface ResultItem {
 
 export interface FetchedDataProps {
   count: number;
-  next: null | string; // Adjust the type if "next" can be other than null
-  previous: null | string; // Adjust the type if "previous" can be other than null
+  next: null | string;
+  previous: null | string;
   results: ResultItem[];
 }
 

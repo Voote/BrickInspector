@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { GestureResponderEvent, Text, TouchableOpacity } from 'react-native';
 import { CountButtonVariant, buttonVariantStyles } from './CountButton.style';
 

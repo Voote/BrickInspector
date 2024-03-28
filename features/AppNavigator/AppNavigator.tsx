@@ -1,5 +1,6 @@
+import { HomeScreen } from '@/components/molecules/HomeScreen/HomeScreen';
 import { PartsListScreen } from '@/components/molecules/PartsListScreen/PartsListScreen';
-import { SetSearch } from '@/components/molecules/Search/Search';
+import { SavedSetsScreen } from '@/components/molecules/SavedSetsScreen/SavedSetsScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaView, Text } from 'react-native';
@@ -16,10 +17,10 @@ export const AppNavigator = () => (
           headerTitleAlign: 'center',
           headerTitleStyle: styles.headerTitleStyle,
         }}
-        initialRouteName="SetSearch"
+        initialRouteName="HomeScreen"
       >
         <Stack.Screen
-          name="SetSearch"
+          name="HomeScreen"
           options={{
             title:
               'Welcome to BrickInspector, your handy list of LEGO sets condition',
@@ -27,9 +28,10 @@ export const AppNavigator = () => (
               <Text {...props} style={styles.customTitle} />
             ),
           }}
-          component={SetSearch}
+          component={HomeScreen}
         />
         <Stack.Screen name="PartsListScreen" component={PartsListScreen} />
+        <Stack.Screen name="SavedSetsScreen" component={SavedSetsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   </SafeAreaView>
