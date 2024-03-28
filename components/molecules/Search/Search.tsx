@@ -9,9 +9,9 @@ export const SetSearch = () => {
   const isSearched = `${shouldFetch ? 'Change' : 'Search'} Set`;
 
   return (
-    <View className="bg-gray-600 flex-1 pt-8">
+    <View className="bg-gray-600 flex-1 pt-4">
       <TextInput
-        className="mx-24 text-center"
+        className="mx-24 pb-1 text-center"
         placeholder="Enter set number"
         keyboardType="numeric"
         onChangeText={(text) => {
