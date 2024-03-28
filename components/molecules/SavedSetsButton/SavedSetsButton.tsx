@@ -8,7 +8,7 @@ export const SavedSetsButton = () => {
     useNavigation<StackNavigationProp<{ SavedSetsScreen: undefined }>>();
 
   return (
-    <View className="pt-12">
+    <View className="pt-4">
       <PrimaryButton
         label="View Saved Sets"
         action={() => navigation.navigate('SavedSetsScreen')}

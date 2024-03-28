@@ -1,5 +1,5 @@
 import { SetListItem } from '@/components/molecules/SetListItem/SetListItem';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
 
 export const SavedSetsScreen = () => {

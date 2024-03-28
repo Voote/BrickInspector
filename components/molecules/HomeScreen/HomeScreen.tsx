@@ -4,7 +4,7 @@ import { SavedSetsButton } from '../SavedSetsButton/SavedSetsButton';
 
 export const HomeScreen = () => (
   <View className="bg-gray-600 flex-1 pt-2">
-    <SetSearch />
     <SavedSetsButton />
+    <SetSearch />
   </View>
 );

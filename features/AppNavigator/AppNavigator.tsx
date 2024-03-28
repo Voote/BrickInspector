@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaView, Text } from 'react-native';
 import { styles } from './AppNavigator.styles';
-// import { ButtonSavedSets } from '@/components/molecules/ButtonSavedSets/ButtonSavedSets';
 
 const Stack = createStackNavigator();
 
